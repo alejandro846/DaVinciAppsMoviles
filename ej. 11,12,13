@@ -1,0 +1,51 @@
+class Persona{
+    constructor(nombre,edad){
+        this.nombre=nombre;
+        this.edad=edad;
+    }
+    presentarse(){
+        return "Hola mi nombre es " + this.nombre + " Tengo " + this.edad + " años";
+    }
+}
+
+class Estudiante extends Persona{
+    
+    constructor(nombre,edad){
+        super(nombre,edad);
+        this.profesor=undefined;
+    }
+
+    estudiando(){
+        return "Estudiando con " + this.profesor;
+    }
+    setProfesor(profesor){
+        this.profesor=profesor;
+    }
+}
+class Profesor extends Persona{
+ constructor(nombre,edad){
+    super(nombre,edad);
+    this.estudiantes=[];   
+ }
+enseniando(){
+    console.log("Les enseño a estos alumnos:")
+    this.estudiantes.forEach(element => {
+        console.log(element);
+    }); 
+}
+addEstudiante(Estudiante){
+this.estudiantes.push(Estudiante);
+Estudiante.setProfesor(this.nombre);
+}
+}
+let ale = new Estudiante("ale",22);
+let juan = new Estudiante("juan",21);
+console.log(ale.presentarse());
+ale.setProfesor("robert");
+console.log(ale.estudiando());
+let robert = new Profesor("robert",43);
+console.log(robert.presentarse());
+robert.enseniando();
+robert.addEstudiante(ale);
+robert.addEstudiante(juan);
+robert.enseniando();
